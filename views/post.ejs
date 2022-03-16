@@ -31,6 +31,16 @@
           <p><%= post.detail %></p>
           <p class="post-meta"><%= post.dateCreated.toLocaleDateString() %></p>
         </div>
+        <div class="col-lg-4 col-md-2 d-flex  flex-column justify-content-center align-items-center">
+          <div class="text-center mb-1">
+            <a href="/posts/edit/<%= post._id %>" class="btn btn-primary p-2 pt-4 pb-4"><span>Update Details</span></a>	
+          </div>	
+          <div class="text-center ">
+            <a href="/posts/<%= post._id %>?_method=DELETE" class="btn btn-danger p-2 pr-3 pl-3 pt-4 pb-4"
+              onclick="return confirm('Are you sure?')"
+              ><span>Delete Posts</span></a>	
+          </div>								
+        </div>
       </div>
     </div>
   </article>
