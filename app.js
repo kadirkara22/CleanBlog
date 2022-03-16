@@ -4,13 +4,19 @@ const path = require('path')
 const methodOverride = require('method-override')
 const Post = require('./modals/Post');
 const mongoose = require('mongoose');
+require('dotenv').config()
 
 const postControllers = require('./controllers/postControllers')
 const pageControllers = require('./controllers/pageControllers')
 
 const app = express();
 
-mongoose.connect('mongodb://localhost/cleanblog-test-db')
+mongoose.connect(`mongodb+srv://kadir:${process.env.PASSWORD}@cluster0.ck6cn.mongodb.net/cleanblog-db?retryWrites=true&w=majority`)
+    .then(() => {
+        console.log('DB CONNECTED!')
+    }).catch((err) => {
+        console.log(err)
+    })
 
 app.set("view engine", "ejs");
 
@@ -35,7 +41,7 @@ app.get('/posts/edit/:id', pageControllers.getEditPage)
 
 
 
-const port = 5000;
+const port = process.env.PORT || 5000
 
 app.listen(port, () => {
     console.log(`Sunucu ${port} portunda başlatıldı...`)
